@@ -33,16 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function showTooltip(key, event) {
         const content = tooltipContent[key];
-        if (!content) return; // Si la clave no está, no hace nada
+        if (!content) return;
 
-        // 1. Inyectar Contenido en el Tooltip
+
         tooltipBox.innerHTML = `
             ${content.image ? `<img src="${content.image}" alt="${content.title}" class="tooltip-image" />` : ''}
             <div class="tooltip-title">${content.title}</div>
             <p>${content.text}</p>
         `;
 
-        // 2. Posicionamiento 
+        // 2. Posicionamiento (se mantiene igual)
         const x = event.clientX;
         const y = event.clientY;
         const boxWidth = tooltipBox.offsetWidth;
@@ -61,13 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
         tooltipBox.style.left = `${left}px`;
         tooltipBox.style.top = `${top}px`;
 
-        // 3. Animación de Entrada
+        // 3. Animación de Entrada (se mantiene igual)
         tooltipBox.style.opacity = '1';
         tooltipBox.style.visibility = 'visible';
         tooltipBox.style.transform = 'translateY(0)';
     }
 
-    /** Oculta el tooltip con animación de salida */
+    /** Oculta el tooltip con animación de salida (se mantiene igual) */
     function hideTooltip() {
         tooltipBox.style.opacity = '0';
         tooltipBox.style.transform = 'translateY(10px)';
@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltipBox.innerHTML = ''; 
         }, 300); 
     }
-// ... (Toda la definición de tooltipContent, showTooltip, y hideTooltip se mantiene IGUAL) ...
 
     // 2. Asignar Event Listeners (se mantiene igual)
     interactiveSections.forEach(section => {
