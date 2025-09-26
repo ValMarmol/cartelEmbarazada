@@ -77,47 +77,56 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltipBox.innerHTML = ''; 
         }, 300); 
     }
+// ... (Toda la definición de tooltipContent, showTooltip, y hideTooltip se mantiene IGUAL) ...
 
-    // 2. Asignar Event Listeners SOLO a los Elementos con .interactive-section
-    interactiveElements.forEach(element => {
-        const key = element.getAttribute('data-tooltip-key');
-        
-        // Evento para mouse (Desktop)
-        element.addEventListener('mousemove', (e) => showTooltip(key, e));
-        element.addEventListener('mouseleave', hideTooltip);
+// 2. Asignar Event Listeners a los Elementos Interactivos
+interactiveElements.forEach(element => {
+    const key = element.getAttribute('data-tooltip-key');
+    
+    // --- Eventos de Escritorio (Mouse) ---
+    element.addEventListener('mousemove', (e) => showTooltip(key, e));
+    element.addEventListener('mouseleave', hideTooltip);
 
-        // Evento para foco (Accesibilidad/Teclado)
-        element.addEventListener('focus', (e) => {
-            const rect = element.getBoundingClientRect();
-            const mockEvent = { clientX: rect.right, clientY: rect.top + (rect.height / 2) };
-            showTooltip(key, mockEvent);
-        });
-        element.addEventListener('blur', hideTooltip);
+    // --- Eventos de Accesibilidad (Teclado) ---
+    element.addEventListener('focus', (e) => {
+        const rect = element.getBoundingClientRect();
+        // Muestra el tooltip cerca del elemento enfocado
+        const mockEvent = { clientX: rect.right, clientY: rect.top + (rect.height / 2) };
+        showTooltip(key, mockEvent);
+    });
+    element.addEventListener('blur', hideTooltip);
 
-        // Evento para touch (Móviles/Tablets)
-        element.addEventListener('touchstart', (e) => {
-            e.preventDefault(); 
-            
-            if (tooltipBox.style.opacity === '1' && element.classList.contains('active-touch')) {
-                hideTooltip();
-                element.classList.remove('active-touch');
-                return;
-            }
+    // --- Eventos Táctiles (Móviles) - ¡Ajuste Clave! ---
+    element.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // Detiene el zoom y el comportamiento por defecto
 
-            document.querySelectorAll('.active-touch').forEach(active => active.classList.remove('active-touch'));
-            
-            const touch = e.touches[0];
-            const mockEvent = { clientX: touch.clientX, clientY: touch.clientY };
-            showTooltip(key, mockEvent);
-            element.classList.add('active-touch');
-        });
-    });
+        // 1. Si ya hay un tooltip visible
+        if (tooltipBox.style.opacity === '1') {
+             // Si el mismo elemento es tocado de nuevo, o si es un toque fuera, ocultamos.
+            if (element.classList.contains('active-touch')) {
+                hideTooltip();
+                element.classList.remove('active-touch');
+                return;
+            }
+            // Si tocamos otro elemento interactivo, primero ocultamos todos los anteriores
+            document.querySelectorAll('.active-touch').forEach(active => active.classList.remove('active-touch'));
+        }
 
-    // Ocultar el tooltip si el usuario toca/cliquea fuera del mismo en touch devices
-    document.addEventListener('touchstart', (e) => {
-        if (!e.target.closest('.interactive-section') && tooltipBox.style.opacity === '1') {
-            hideTooltip();
-            document.querySelectorAll('.active-touch').forEach(active => active.classList.remove('active-touch'));
-        }
-    });
+        // 2. Mostramos el nuevo tooltip
+        const touch = e.touches[0];
+        const mockEvent = { clientX: touch.clientX, clientY: touch.clientY };
+        showTooltip(key, mockEvent);
+        element.classList.add('active-touch');
+    }, { passive: false }); // Usamos passive: false para asegurar que preventDefault funcione
+});
+
+// Ocultar el tooltip si el usuario toca/cliquea FUERA del mismo en touch devices
+document.addEventListener('touchstart', (e) => {
+    // Si el toque no está en un elemento interactivo y el tooltip está visible
+    if (!e.target.closest('.interactive-section') && tooltipBox.style.opacity === '1') {
+        hideTooltip();
+        // Limpiamos la clase 'active-touch' de todos los elementos
+        document.querySelectorAll('.active-touch').forEach(active => active.classList.remove('active-touch'));
+    }
+}, { passive: true }); // Usamos passive: true para que el scroll del fondo siga funcionando
 });
