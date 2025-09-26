@@ -1,4 +1,4 @@
-/* 1. Variables y Estilos Generales para Accesibilidad y Diseño */
+/* 1. Variables y Estilos Generales */
 :root {
     --color-primary: #FFCCBC; /* Melocotón (Peach) para Títulos y Resaltar */
     --color-secondary: #C8E6C9; /* Verde Menta para Fondos Secundarios */
@@ -82,35 +82,48 @@ main {
     padding: 10px;
 }
 
-/* 3. Fila de Iconos Conceptuales (NUEVA UBICACIÓN) */
-.conceptual-row {
+/* 3. Posicionamiento de Imágenes Conceptual (Introducción, Tablas) */
+
+/* --- Introducción: Texto a la izquierda, Embarazo a la derecha --- */
+.flex-content-intro {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 20px 0;
-    margin-bottom: 20px;
-    border-bottom: 3px solid var(--color-light-gray);
-    flex-wrap: wrap; 
-    background-color: var(--color-white); /* Fondo blanco para la fila */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    flex-direction: row; 
+    gap: 20px;
+    align-items: center; 
 }
 
+.text-intro {
+    flex: 2; 
+}
+
+.intro-image-item {
+    flex: 1; 
+    min-width: 150px;
+    margin: 0;
+    background-color: var(--color-secondary); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.large-concept-intro {
+    width: 100px; 
+    height: 100px;
+}
+
+/* --- Estilo Base de los Íconos Conceptual --- */
 .concept-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 30%;
     padding: 10px;
-    background-color: transparent;
     border-radius: 8px;
+    cursor: pointer;
     transition: background-color var(--transition-duration) ease, transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
 }
 
 .concept-image {
-    width: clamp(70px, 10vw, 90px); 
-    height: clamp(70px, 10vw, 90px);
+    width: 80px; 
+    height: 80px;
     padding: 10px;
     background-color: var(--color-primary); 
     border-radius: 50%; 
@@ -125,88 +138,58 @@ main {
 }
 
 .concept-item:hover, .concept-item:focus {
-    background-color: rgba(199, 237, 248, 0.5); 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     outline: none;
+    background-color: rgba(199, 237, 248, 0.5); /* Azul claro semi-transparente */
 }
 
-
-/* 4. Secciones Específicas: Objetivo y Metodología */
-.goal-method-section {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.content-subsection {
-    flex: 1;
-    min-width: 300px;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-#objetivo {
-    background-color: var(--color-secondary);
-}
-
-#metodologia {
-    background-color: var(--color-white);
-}
-
-.subsection-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-/* 5. Estilos de Tablas y Resultados */
-
+/* 4. Estilos de Tablas y Resultados (Diseño de Lista Vertical) */
 .results-tables {
-    /* 1. ELIMINAMOS las viñetas y el padding de lista */
+    display: block; 
+    margin-top: 20px;
     list-style: none;
     padding: 0;
-    
-    /* 2. DEFINIMOS EL LAYOUT COMO GRID */
-    display: grid;
-    
-    /* 3. CONFIGURAMOS LAS COLUMNAS para que sean responsivas (cuadrícula) */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-    gap: 20px; /* Espacio entre las tablas */
-    margin-top: 20px;
 }
 
-
-.results-tables {
-    display: block; /* Aseguramos comportamiento normal de bloque */
-    margin-top: 20px;
-    list-style: none; /* Quitamos viñetas */
-    padding: 0;
-}
-
-.results-tables li {
-    width: 100%; /* Ocupa todo el ancho */
-    margin-bottom: 20px; /* Separación vertical entre las tablas */
-}
-
-.tables-group-3-4 > div {
-    display: block;
-}
-
-.tables-group-3-4 .table-container {
+/* --- Tablas con Íconos (Habitos y Nutricional) --- */
+.habitos-flex-table, .nutricional-flex-table {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%; 
     margin-bottom: 20px; 
+    /* El ícono de Hábitos es el segundo elemento, por lo que usamos row-reverse para ponerlo a la derecha */
 }
 
-.table-container {
-    background-color: var(--color-light-gray);
+.habitos-flex-table {
+    flex-direction: row-reverse; 
+}
+
+.nutricional-flex-table {
+    flex-direction: row; /* La tabla es el primer elemento, la imagen es el segundo */
+}
+
+/* Estilos comunes para los íconos en tablas */
+.habitos-image-item, .nutricional-image-item {
+    flex-shrink: 0;
+    width: 150px; 
     padding: 15px;
-    border-radius: 8px;
-    overflow-x: auto; 
+    background-color: var(--color-white); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.large-concept-habitos, .large-concept-nutricional {
+    width: 90px;
+    height: 90px;
+}
+
+/* Estilos comunes para los contenedores de las tablas */
+.habitos-flex-table .table-container, .nutricional-flex-table .table-container {
+    flex-grow: 1; 
     margin-bottom: 0; 
 }
+
 .table-container {
     background-color: var(--color-light-gray);
     padding: 15px;
@@ -244,33 +227,23 @@ main {
     color: #666;
 }
 
-/* 6. Conclusión y Bibliografía */
-.conclusion-content ul {
-    list-style: none;
-    padding: 0;
+/* 5. Secciones Específicas: Objetivo y Metodología */
+.objective-full-width, #metodologia-section {
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.conclusion-content li {
-    background-color: var(--color-white);
-    padding: 15px;
-    margin-bottom: 10px;
-    border-left: 5px solid var(--color-primary);
-    border-radius: 4px;
+#metodologia-section {
+    background-color: var(--color-white); 
 }
 
-.bibliography-list {
-    font-size: 0.8rem;
-    padding-left: 20px;
-    border-left: 2px solid var(--color-light-gray);
+#objetivo {
+    /* Mantenemos el fondo del objetivo ya que está solo */
 }
 
-.small-text {
-    margin-bottom: 10px;
-}
-
-/* 7. Tooltip Styles and Interactions */
-
-/* Contenedor del Tooltip */
+/* 6. Tooltip Styles */
 .tooltip-box {
     position: fixed;
     max-width: 300px;
@@ -296,59 +269,69 @@ main {
 .tooltip-image {
     width: 100%;
     height: 120px;
-    object-fit: contain; /* Usar 'contain' para iconos y evitar cortes */
+    object-fit: contain; 
     border-radius: 4px;
     margin-bottom: 10px;
 }
 
-/* Estilo para las secciones que activan el tooltip (TODAS) */
 .interactive-section {
     cursor: pointer;
     position: relative;
     transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
-    /* Necesario para accesibilidad por teclado */
     outline-offset: 5px; 
 }
 
-.interactive-section:hover, .interactive-section:focus {
-    transform: translateY(-3px); 
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* 8. Media Queries para Responsividad */
+/* 7. Media Queries para Responsividad */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    .main-header {
-        padding: 20px 15px;
-    }
-
-    .title {
-        font-size: 1.6rem;
-    }
-
-    .authors {
-        text-align: left;
+    
+    .flex-content-intro {
+        flex-direction: column;
+        align-items: center;
     }
     
-    .goal-method-section {
+    .intro-image-item {
+        margin-top: 15px;
+    }
+    
+    .habitos-flex-table {
         flex-direction: column; 
+        align-items: center;
+    }
+    
+    .habitos-image-item {
+        order: 1; 
+        margin-top: 15px;
+    }
+
+    .nutricional-flex-table {
+        flex-direction: column; 
+        align-items: center;
+    }
+    
+    .nutricional-image-item {
+        order: 1; 
+        margin-top: 15px;
     }
 
     .results-tables {
-        grid-template-columns: 1fr; 
+        padding: 0 10px; /* Pequeño padding para móviles */
+    }
+
+    .data-table {
+        font-size: 0.8rem;
     }
 }
-
-@media (max-width: 600px) {
-    .conceptual-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-    .concept-item {
-        width: 80%; 
-    }
+/* Asegúrate de que esta regla exista en styles.css para la Tabla 4 */
+.small-table th, .small-table td {
+    font-size: 0.75rem; /* Ajustar el tamaño de fuente para que quepa */
+    padding: 5px;
+    white-space: nowrap; /* Evita que los encabezados se rompan en varias líneas */
+}
+.tables-group-3-4 {
+    /* Usamos Flexbox vertical para asegurar la separación */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Esto añade la separación deseada entre Tabla 3 y Tabla 4 */
+    width: 100%;
+    margin-bottom: 20px; /* Separación de la conclusión */
 }
