@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'correlacion': {
             title: 'Correlación Significativa (r=0.700)',
-            text: 'Se encontró una **relación fuerte y positiva** entre los hábitos alimentarios y la ganancia de peso. Esto significa que a mejores hábitos, existe un mejor control de peso durante la gestación.',
+            text: 'Se encontró una relación fuerte y positiva entre los hábitos alimentarios y la ganancia de peso. Esto significa que a mejores hábitos, existe un mejor control de peso durante la gestación.',
         },
     };
     
