@@ -56,6 +56,8 @@ body {
 main {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative; /* Asegura un contexto de apilamiento */
+    z-index: 10;
 }
 
 .content-section {
@@ -159,7 +161,6 @@ main {
     align-items: center;
     width: 100%; 
     margin-bottom: 20px; 
-    /* El ícono de Hábitos es el segundo elemento, por lo que usamos row-reverse para ponerlo a la derecha */
 }
 
 .habitos-flex-table {
@@ -167,7 +168,7 @@ main {
 }
 
 .nutricional-flex-table {
-    flex-direction: row; /* La tabla es el primer elemento, la imagen es el segundo */
+    flex-direction: row; 
 }
 
 /* Estilos comunes para los íconos en tablas */
@@ -227,6 +228,22 @@ main {
     color: #666;
 }
 
+/* 4.5 Reglas Específicas para Tablas 3 y 4 (Separación y Estilo Pequeño) */
+.tables-group-3-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    width: 100%;
+    margin-bottom: 20px; 
+}
+
+.small-table th, .small-table td {
+    font-size: 0.75rem; 
+    padding: 5px;
+    white-space: nowrap; 
+}
+
+
 /* 5. Secciones Específicas: Objetivo y Metodología */
 .objective-full-width, #metodologia-section {
     padding: 25px;
@@ -239,10 +256,6 @@ main {
     background-color: var(--color-white); 
 }
 
-#objetivo {
-    /* Mantenemos el fondo del objetivo ya que está solo */
-}
-
 /* 6. Tooltip Styles */
 .tooltip-box {
     position: fixed;
@@ -252,7 +265,7 @@ main {
     color: var(--color-white);
     border-radius: 6px;
     pointer-events: none; 
-    z-index: 1000;
+    z-index: 9999; /* Aseguramos que esté siempre encima (máximo) */
     opacity: 0;
     visibility: hidden;
     transition: opacity var(--transition-duration), transform var(--transition-duration);
@@ -280,6 +293,29 @@ main {
     transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
     outline-offset: 5px; 
 }
+
+/* 8. Pie de Página (Firma del Desarrollador) */
+.main-footer {
+    text-align: center;
+    padding: 20px 0; /* Aumentado a 20px para mejor separación */
+    margin-top: 20px; /* Aumentado a 20px para mejor separación */
+    border-top: 1px solid var(--color-light-gray);
+    background-color: var(--color-white); 
+    border-radius: 8px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.main-footer p {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.main-footer p:first-child {
+    font-weight: bold;
+    color: var(--color-text);
+}
+
 
 /* 7. Media Queries para Responsividad */
 @media (max-width: 768px) {
@@ -320,39 +356,4 @@ main {
     .data-table {
         font-size: 0.8rem;
     }
-}
-/* Asegúrate de que esta regla exista en styles.css para la Tabla 4 */
-.small-table th, .small-table td {
-    font-size: 0.75rem; /* Ajustar el tamaño de fuente para que quepa */
-    padding: 5px;
-    white-space: nowrap; /* Evita que los encabezados se rompan en varias líneas */
-}
-.tables-group-3-4 {
-    /* Usamos Flexbox vertical para asegurar la separación */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Esto añade la separación deseada entre Tabla 3 y Tabla 4 */
-    width: 100%;
-    margin-bottom: 20px; /* Separación de la conclusión */
-}
-/* 8. Pie de Página (Firma del Desarrollador) */
-.main-footer {
-    text-align: center;
-    padding: 8px 0;
-    margin-top: 8px;
-    border-top: 1px solid var(--color-light-gray);
-    background-color: var(--color-white); 
-    border-radius: 8px;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.03);
-}
-
-.main-footer p {
-    font-size: 0.8rem;
-    color: #666;
-    margin: 5px 0;
-}
-
-.main-footer p:first-child {
-    font-weight: bold;
-    color: var(--color-text);
 }

@@ -8,17 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // --- TOOLTIPS CONCEPTUALES (Mantienen imagen) ---
         'concepto_embarazo': {
-            title: 'Definición: El Embarazo',
+            title: 'El Embarazo',
             text: 'El embarazo es el espacio de tiempo que comprende desde la concepción y el parto, durante esta etapa el feto dentro del útero materno crece y se desarrolla en un lapso de 280 días. ',
             image: 'img/embarazo.svg' 
         },
         'concepto_habitos': {
-            title: 'Definición: Hábitos Nutricionales',
+            title: 'Hábitos Nutricionales',
             text: 'Hábitos alimenticios son el conjunto de patrones y costumbres que determinan la selección, preparación y consumo de alimentos, procurando obtener el sustento nutricional.',
             image: 'img/habitos_nutricionales.svg' 
         },
         'concepto_nutricional': {
-            title: 'Definición: Estado Nutricional',
+            title: 'Estado Nutricional',
             text: 'El estado nutricional es la condición de salud de cada persona como consecuencia de las carencias, los excesos y los desequilibrios de la ingesta alimentaria y calórica de cada persona y su estilo de vida.',
             image: 'img/estado_nutricional.svg'
         },
