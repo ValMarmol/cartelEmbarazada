@@ -24,18 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         
         // --- TOOLTIPS DE RESULTADOS (SIN IMAGEN) ---
-        'habitos': {
-            title: 'Hábitos Inadecuados: ¡Riesgo!',
-            text: '¡El 36.2% de las mujeres tienen hábitos alimentarios inadecuados! Este alto porcentaje subraya la necesidad urgente de intervención nutricional en la población.',
-        },
-        'imc': {
-            title: 'Riesgo por Exceso de Peso',
-            text: 'El 34.5% presentaba sobrepeso y el 17.2% obesidad. Esto suma más del 50% de la muestra con riesgo de complicaciones por peso pregestacional (antes del embarazo).',
-        },
-        'correlacion': {
-            title: 'Correlación Significativa (r=0.700)',
-            text: 'Se encontró una relación fuerte y positiva entre los hábitos alimentarios y la ganancia de peso. Esto significa que a mejores hábitos, existe un mejor control de peso durante la gestación.',
-        },
+        //'habitos': {
+          //  title: 'Hábitos Inadecuados: ¡Riesgo!',
+            //text: '¡El 36.2% de las mujeres tienen hábitos alimentarios inadecuados! Este alto porcentaje subraya la necesidad urgente de intervención nutricional en la población.',
+      //  },
+        //'imc': {
+         //   title: 'Riesgo por Exceso de Peso',
+           // text: 'El 31.9% presentaba sobrepeso y el 17.2% obesidad. Esto suma más del 50% de la muestra con riesgo de complicaciones por peso pregestacional (antes del embarazo).',
+    //    },
+      //  'correlacion': {
+        //    title: 'Correlación Significativa (r=0.700)',
+      //      text: 'Se encontró una relación fuerte y positiva entre los hábitos alimentarios y la ganancia de peso. Esto significa que a mejores hábitos, existe un mejor control de peso durante la gestación.',
+        //},
     };
     
     /**
